@@ -1,0 +1,377 @@
+fileFormatVersion: 2
+guid: 21e9390026fe4b44ba34b73de781a853
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2505482334102927386
+    second: CatsQuest1_player_idle.07_0
+  - first:
+      213: 8419972920588052118
+    second: CatsQuest1_player_idle.07_1
+  - first:
+      213: 2948194400267638729
+    second: CatsQuest1_player_idle.07_2
+  - first:
+      213: 5841600787194520320
+    second: CatsQuest1_player_idle.07_3
+  - first:
+      213: -5562925090345385223
+    second: CatsQuest1_player_idle.07_4
+  - first:
+      213: -7804016966524356193
+    second: CatsQuest1_player_idle.07_5
+  - first:
+      213: 8259481403946590214
+    second: CatsQuest1_player_idle.07_6
+  - first:
+      213: -8587608393186053539
+    second: CatsQuest1_player_idle.07_7
+  - first:
+      213: -4578886873872474427
+    second: CatsQuest1_player_idle.07_8
+  - first:
+      213: -2041264055985757417
+    second: CatsQuest1_player_idle.07_9
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: CatsQuest1_player_idle.07_0
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 68
+        width: 167
+        height: 336
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e747cc771dba3dd0800000000000000
+      internalID: -2505482334102927386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CatsQuest1_player_idle.07_1
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 305
+        width: 15
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6962f06a2c0c9d470800000000000000
+      internalID: 8419972920588052118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CatsQuest1_player_idle.07_2
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 317
+        width: 65
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c79fb4df271ae820800000000000000
+      internalID: 2948194400267638729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CatsQuest1_player_idle.07_3
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 186
+        width: 133
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0032f5047f8811150800000000000000
+      internalID: 5841600787194520320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CatsQuest1_player_idle.07_4
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 291
+        width: 38
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f20bdd9a158cc2b0800000000000000
+      internalID: -5562925090345385223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CatsQuest1_player_idle.07_5
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 286
+        width: 37
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f99b1399aef82b390800000000000000
+      internalID: -7804016966524356193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CatsQuest1_player_idle.07_6
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 285
+        width: 8
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6006e2783929f9270800000000000000
+      internalID: 8259481403946590214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CatsQuest1_player_idle.07_7
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 88
+        width: 76
+        height: 161
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d527bfd5aafa2d880800000000000000
+      internalID: -8587608393186053539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CatsQuest1_player_idle.07_8
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 181
+        width: 36
+        height: 76
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ced120f5a68470c0800000000000000
+      internalID: -4578886873872474427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CatsQuest1_player_idle.07_9
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 72
+        width: 47
+        height: 79
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 713223af729fba3e0800000000000000
+      internalID: -2041264055985757417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: bab1c19dda57d3c4babe026a9af9af09
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      CatsQuest1_player_idle.07_0: -2505482334102927386
+      CatsQuest1_player_idle.07_1: 8419972920588052118
+      CatsQuest1_player_idle.07_2: 2948194400267638729
+      CatsQuest1_player_idle.07_3: 5841600787194520320
+      CatsQuest1_player_idle.07_4: -5562925090345385223
+      CatsQuest1_player_idle.07_5: -7804016966524356193
+      CatsQuest1_player_idle.07_6: 8259481403946590214
+      CatsQuest1_player_idle.07_7: -8587608393186053539
+      CatsQuest1_player_idle.07_8: -4578886873872474427
+      CatsQuest1_player_idle.07_9: -2041264055985757417
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
