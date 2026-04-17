@@ -153,7 +153,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.041, y: -0.071}
+  m_AnchoredPosition: {x: -0.059, y: -0.086}
   m_SizeDelta: {x: 0.21517998, y: 0.2587614}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &11516011
@@ -229,12 +229,12 @@ Transform:
   m_LocalScale: {x: 691.4564, y: 176.3379, z: 31.103354}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1292574457}
   - {fileID: 743515115}
   - {fileID: 248721067}
   - {fileID: 1882060938}
   - {fileID: 1427546765}
   - {fileID: 475782966}
-  - {fileID: 1292574457}
   m_Father: {fileID: 702302285}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &127793983
@@ -251,16 +251,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BattleDialogueBox
   lettersPerSecond: 10
   highlightedColor: {r: 0, g: 0.061501026, b: 1, a: 1}
-  dialogueText: {fileID: 0}
+  dialogueText: {fileID: 1292574458}
   actionselector: {fileID: 743515114}
   moveselectorCat: {fileID: 248721066}
   moveselectorCompanion: {fileID: 1882060937}
   movedetailsCat: {fileID: 1427546764}
   movedetailsCompanion: {fileID: 475782965}
-  actionTexts: []
-  moveTextsC: []
-  moveTextsCn: []
-  moves: []
+  actionTexts:
+  - {fileID: 0}
+  - {fileID: 0}
+  moveTextsC:
+  - {fileID: 0}
+  - {fileID: 0}
+  moveTextsCn:
+  - {fileID: 0}
+  - {fileID: 0}
+  moves:
+  - {fileID: 0}
+  - {fileID: 0}
   descriptionC: {fileID: 0}
   descriptionCn: {fileID: 0}
   myTextMeshPro: {fileID: 0}
@@ -955,7 +963,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.046, y: 0.265}
+  m_AnchoredPosition: {x: -0.071, y: 0.225}
   m_SizeDelta: {x: 0.21517998, y: 0.2587614}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1286859316
@@ -1034,8 +1042,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.002343, y: 0.01318}
-  m_SizeDelta: {x: 1871.3594, y: 1711.3623}
+  m_AnchoredPosition: {x: 0.002343, y: 0.012805}
+  m_SizeDelta: {x: 1871.3594, y: 653.75195}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1292574458
 MonoBehaviour:
@@ -1059,11 +1067,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 12
+    m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 12
-    m_MaxSize: 230
+    m_MinSize: 0
+    m_MaxSize: 200
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
