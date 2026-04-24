@@ -11,7 +11,7 @@ public class BattleDialogueBox : MonoBehaviour
 
 
 
-    [SerializeField] Text dialogueText;
+    [SerializeField] TextMeshProUGUI dialogueText;
     [SerializeField] GameObject actionselector;
 
     [SerializeField] GameObject moveselectorCat;
@@ -19,21 +19,24 @@ public class BattleDialogueBox : MonoBehaviour
     [SerializeField] GameObject movedetailsCat;
     [SerializeField] GameObject movedetailsCompanion;
 
-    [SerializeField] List<Text> actionTexts;
-    [SerializeField] List<Text> moveTextsC;
-    [SerializeField] List<Text> moveTextsCn;
-    [SerializeField] List<Text> moves;
+    [SerializeField] GameObject ItemList;
 
-    [SerializeField] Text descriptionC;
-    [SerializeField] Text descriptionCn;
+    [SerializeField] List<TextMeshProUGUI> actionTexts;
+    [SerializeField] List<TextMeshProUGUI> moveTextsC;
+    [SerializeField] List<TextMeshProUGUI> moveTextsCn;
+    [SerializeField] List<TextMeshProUGUI> moves;
 
-    public TextMeshProUGUI myTextMeshPro;
+    [SerializeField] TextMeshProUGUI descriptionC;
+    [SerializeField] TextMeshProUGUI descriptionCn;
+
+    [SerializeField] List<TextMeshProUGUI> Items;
+
 
     public void SetDialogue(string dialogue)
     {
 
         dialogueText.text = dialogue;
-        myTextMeshPro.text = dialogue;
+
 
     }
 
@@ -74,6 +77,15 @@ public class BattleDialogueBox : MonoBehaviour
         movedetailsCompanion.SetActive(enabled);
     }
 
+    public void EnableItemSelector(bool enabled)
+    {
+        ItemList.SetActive(enabled);
+
+    }
+
+
+
+
     public void UpdateActionSelection(int selectedAction)
     {
         for (int i = 0; i < actionTexts.Count; i++)
@@ -105,6 +117,19 @@ public class BattleDialogueBox : MonoBehaviour
         for (int i = 0; i < moveTextsCn.Count; i++)
         {
             if (i == CurrentMoveCompanion)
+                moveTextsCn[i].color = highlightedColor;
+
+            else
+                moveTextsCn[i].color = Color.black;
+        }
+
+    }
+
+    public void UpdateItemSelection(int CurrentItem)
+    {
+        for (int i = 0; i < moveTextsCn.Count; i++)
+        {
+            if (i == CurrentItem)
                 moveTextsCn[i].color = highlightedColor;
 
             else

@@ -36,6 +36,7 @@ public class BattleManager : MonoBehaviour
         PlayerAction,
         PlayerActionCat,
         PlayerActionCompanion,
+        PlayerActionItem,
         EnemyMove,
         Busy,
 
@@ -68,6 +69,9 @@ public class BattleManager : MonoBehaviour
     public float Battleorder;
     public float Lvlattack;
 
+    public int Milk;
+    public int Treat;
+
 
 
 
@@ -75,6 +79,7 @@ public class BattleManager : MonoBehaviour
     int CurrentActionBattle;
     int CurrentMoveCat;
     int CurrentMoveCompanion;
+    int CurrentMoveItem;
 
 
     // Start is called before the first frame update
@@ -87,6 +92,7 @@ public class BattleManager : MonoBehaviour
         dialogueBox.EnableActionSelector(false);
         dialogueBox.EnableMoveSelectorCat(false);
         dialogueBox.EnableMoveSelectorCompanion(false);
+        dialogueBox.EnableItemSelector(false);
         SetupBattle();
 
 
@@ -111,6 +117,9 @@ public class BattleManager : MonoBehaviour
         attack = (Level * Lvlattack) + 10;
         HP = (Level * 10) + 40;
         spell = (Level * 15) + 15;
+
+        Milk = 5;
+        Treat = 5;
 
 
 
@@ -215,7 +224,7 @@ public class BattleManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            if (CurrentMoveCat < 1)
+            if (CurrentMoveCat < 2)
                 ++CurrentMoveCat;
         }
 
@@ -250,6 +259,17 @@ public class BattleManager : MonoBehaviour
                 dialogueBox.EnableMoveSelectorCat(false);
                 state = Battlestates.Busy;
                 StartCoroutine(CatSpecial());
+
+            }
+
+            if (CurrentMoveCat == 2)
+            {
+
+                Debug.Log("Items");
+                dialogueBox.EnableDialogueText(true);
+                dialogueBox.EnableMoveSelectorCat(false);
+                state = Battlestates.Busy;
+                StartCoroutine(ItemsCat());
 
             }
 
@@ -301,12 +321,83 @@ public class BattleManager : MonoBehaviour
         }
     }
 
+    public IEnumerator ItemsCat()
+    {
+        yield return StartCoroutine(dialogueBox.TypeDialogue($"Items"));
+        yield return new WaitForSeconds(2f);
+
+        Debug.Log("Items");
+
+        dialogueBox.EnableItemSelector(true);
+        state = Battlestates.PlayerActionItem;
+
+
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            if (CurrentMoveItem < 1)
+                ++CurrentMoveItem;
+        }
+
+        else if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            if (CurrentMoveItem > 0)
+                --CurrentMoveItem;
+
+        }
+
+        dialogueBox.UpdateItemSelection(CurrentMoveItem);
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+
+            if (CurrentMoveCat == 0)
+            {
+                Debug.Log("Milk");
+                dialogueBox.EnableDialogueText(true);
+                dialogueBox.EnableItemSelector(false);
+                state = Battlestates.Busy;
+
+                Milk--;
+
+                HandleMoveSelectionCompanion();
+
+
+            }
+
+            if (CurrentMoveCat == 1)
+            {
+
+                Debug.Log("Treat");
+                dialogueBox.EnableDialogueText(true);
+                dialogueBox.EnableItemSelector(false);
+                state = Battlestates.Busy;
+
+                Treat--;
+
+                HandleMoveSelectionCompanion();
+
+            }
+        }
+
+            if (Input.GetKeyDown(KeyCode.R))
+        {
+
+            HandleMoveSelectionCat();
+
+
+        }
+
+
+
+
+    }
+
     void HandleMoveSelectionCompanion()
     {
 
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            if (CurrentMoveCompanion < 1)
+            if (CurrentMoveCompanion < 2)
                 ++CurrentMoveCompanion;
         }
 
