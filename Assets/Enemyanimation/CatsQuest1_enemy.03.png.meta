@@ -1,0 +1,403 @@
+fileFormatVersion: 2
+guid: 8e9687ceccc88294791fc6747142b64a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -10337849400109507
+    second: CatsQuest1_enemy.03_0
+  - first:
+      213: 3793592108747108010
+    second: CatsQuest1_enemy.03_1
+  - first:
+      213: -4667644427679888057
+    second: CatsQuest1_enemy.03_2
+  - first:
+      213: -56998376223045016
+    second: CatsQuest1_enemy.03_3
+  - first:
+      213: -6005171480688512364
+    second: CatsQuest1_enemy.03_4
+  - first:
+      213: -9055978011035308471
+    second: CatsQuest1_enemy.03_5
+  - first:
+      213: -238553631653635637
+    second: CatsQuest1_enemy.03_6
+  - first:
+      213: 7635605743644857630
+    second: CatsQuest1_enemy.03_7
+  - first:
+      213: 3143668154056709302
+    second: CatsQuest1_enemy.03_8
+  - first:
+      213: 7195538403958516579
+    second: CatsQuest1_enemy.03_9
+  - first:
+      213: -5028530478235557604
+    second: CatsQuest1_enemy.03_10
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: CatsQuest1_enemy.03_0
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 38
+        width: 220
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d36d3ced7c54bdff0800000000000000
+      internalID: -10337849400109507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CatsQuest1_enemy.03_1
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 161
+        width: 40
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aaea8907ceb85a430800000000000000
+      internalID: 3793592108747108010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CatsQuest1_enemy.03_2
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 120
+        width: 139
+        height: 159
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74d0f4e8f12393fb0800000000000000
+      internalID: -4667644427679888057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CatsQuest1_enemy.03_3
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 120
+        width: 47
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86a83706740853ff0800000000000000
+      internalID: -56998376223045016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CatsQuest1_enemy.03_4
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 105
+        width: 10
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4923146ea5859aca0800000000000000
+      internalID: -6005171480688512364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CatsQuest1_enemy.03_5
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 68
+        width: 13
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94eed76caf3b25280800000000000000
+      internalID: -9055978011035308471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CatsQuest1_enemy.03_6
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 98
+        width: 8
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc9d7656cbc70bcf0800000000000000
+      internalID: -238553631653635637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CatsQuest1_enemy.03_7
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 87
+        width: 20
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1552eaf7fe17f960800000000000000
+      internalID: 7635605743644857630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CatsQuest1_enemy.03_8
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 41
+        width: 87
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b4124eb78d80ab20800000000000000
+      internalID: 3143668154056709302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CatsQuest1_enemy.03_9
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 43
+        width: 30
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36be0a70e00bbd360800000000000000
+      internalID: 7195538403958516579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CatsQuest1_enemy.03_10
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 55
+        width: 14
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c116b8e1c22173ab0800000000000000
+      internalID: -5028530478235557604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 8b3843115ac1b6546a5f36c48009dc82
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      CatsQuest1_enemy.03_0: -10337849400109507
+      CatsQuest1_enemy.03_1: 3793592108747108010
+      CatsQuest1_enemy.03_10: -5028530478235557604
+      CatsQuest1_enemy.03_2: -4667644427679888057
+      CatsQuest1_enemy.03_3: -56998376223045016
+      CatsQuest1_enemy.03_4: -6005171480688512364
+      CatsQuest1_enemy.03_5: -9055978011035308471
+      CatsQuest1_enemy.03_6: -238553631653635637
+      CatsQuest1_enemy.03_7: 7635605743644857630
+      CatsQuest1_enemy.03_8: 3143668154056709302
+      CatsQuest1_enemy.03_9: 7195538403958516579
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

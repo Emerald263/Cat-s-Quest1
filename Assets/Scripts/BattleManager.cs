@@ -19,9 +19,9 @@ public class BattleManager : MonoBehaviour
     public bool Catidle;
     public bool Catattck;
     public bool Companionidle;
-    public float Companionattck;
-    public float Enemyidle;
-    public float Enemyattck;
+    public bool Companionattck;
+    public bool Enemyidle;
+    public bool Enemyattack;
 
     public TextMeshPro existsIn3DSpaceText; //the TextMeshPro object exists in scene space, NOT canvas or screenspace
     public TextMeshProUGUI existsInScreenSpace; //any canvas based textMeshPro objects you add will be this data type
@@ -516,11 +516,13 @@ public class BattleManager : MonoBehaviour
 
     public IEnumerator EnemyAttack()
     {
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 1; i++)
         {
 
             yield return StartCoroutine(dialogueBox.TypeDialogue($"The Enemy Attacked"));
             yield return new WaitForSeconds(5f);
+
+            bool Enemyattack = true;
 
 
         }
@@ -541,7 +543,7 @@ public class BattleManager : MonoBehaviour
     {
 
 
-        yield return StartCoroutine(dialogueBox.TypeDialogue($"Wild Tree Crawlers appeared"));
+        yield return StartCoroutine(dialogueBox.TypeDialogue($"Alley Cats"));
         yield return new WaitForSeconds(1f);
 
         Playeraction();
