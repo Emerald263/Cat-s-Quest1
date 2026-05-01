@@ -1,4 +1,6 @@
 using UnityEngine;
+using static BattleManager;
+using static Inventory;
 
 public class Player : MonoBehaviour
 {
@@ -7,6 +9,9 @@ public class Player : MonoBehaviour
     public float IdleTimer;
     public float timeincrease;
     public GameObject inventory; //inventory UI
+    public GameObject invenpage1;
+    public GameObject invenpage2;
+    public GameObject invenpage3;
 
 
     public Playerstates State;
@@ -15,12 +20,15 @@ public class Player : MonoBehaviour
 
         Overworld = 1,
         Battle = 2,
-        Inventory = 3, 
+        Inventory = 3,
         Shop = 4,
         Rest = 5,
-
-
     }
+
+        int Currentinvenpage;
+
+
+    
 
     private SpriteRenderer sr;
 
@@ -40,6 +48,7 @@ public class Player : MonoBehaviour
 
         sr = GetComponent<SpriteRenderer>();
         myAnim = GetComponent<Animator>();
+        inventory.SetActive(false);
 
         speed = 0.2f;
 
@@ -91,6 +100,12 @@ public class Player : MonoBehaviour
         {
             Debug.Log("Inventory");
             inventory.SetActive(true);
+            invenpage1.SetActive(true);
+            invenpage2.SetActive(false);
+            invenpage3.SetActive(false);
+
+            HandleCurrentInventoryPage();
+
 
         }
 
@@ -151,6 +166,54 @@ public class Player : MonoBehaviour
         return dir;
     }
 
+    void HandleCurrentInventoryPage()
+    {
 
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            if (Currentinvenpage < 2)
+                ++Currentinvenpage;
+        }
+
+        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            if (Currentinvenpage > 0)
+                --Currentinvenpage;
+
+        }
+
+
+        if (Currentinvenpage == 0)
+        {
+            Debug.Log("Cat");
+            invenpage1.SetActive(true);
+            invenpage2.SetActive(false);
+            invenpage3.SetActive(false);
+
+
+        }
+
+        if (Currentinvenpage == 1)
+        {
+
+            Debug.Log("Cat");
+            invenpage1.SetActive(false);
+            invenpage2.SetActive(true);
+            invenpage3.SetActive(false);
+        }
+
+        if (Currentinvenpage == 2)
+        {
+
+            Debug.Log("Items");
+            invenpage1.SetActive(false);
+            invenpage2.SetActive(false);
+            invenpage3.SetActive(true);
+
+        }
+
+
+
+    }
 
 }
