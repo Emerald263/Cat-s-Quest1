@@ -15,6 +15,7 @@ public class Inventory : MonoBehaviour
     [SerializeField] List<TextMeshProUGUI> ItemList1;
     [SerializeField] List<TextMeshProUGUI> ItemList2;
 
+
     [SerializeField] GameObject selector1;
     [SerializeField] GameObject selector2;
 
@@ -34,11 +35,11 @@ public class Inventory : MonoBehaviour
         selector2.SetActive(enabled);
     }
 
-    public void UpdateInventorySelection1(int InventoryPage1Move)
+    public void UpdateInventorySelection(int CurrentInvenItem)
     {
         for (int i = 0; i < ItemList1.Count; i++)
         {
-            if (i == InventoryPage1Move)
+            if (i == CurrentInvenItem)
                 ItemList1[i].color = highlightedColor;
 
             else
@@ -46,23 +47,6 @@ public class Inventory : MonoBehaviour
         }
 
     }
-
-    public void UpdateInventorySelection2(int InventoryPage2Move)
-    {
-        for (int i = 0; i < ItemList2.Count; i++)
-        {
-            if (i == InventoryPage2Move)
-                ItemList2[i].color = highlightedColor;
-
-            else
-                ItemList2[i].color = Color.black;
-        }
-
-    }
-
-
-
-
 
 
 

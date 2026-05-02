@@ -17,6 +17,21 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/OverworldHomeFloor2.unity
     guid: 7756d8941ffb25743915461033220f7c
+  - enabled: 1
+    path: Assets/Scenes/OverworldHomeFloor1.unity
+    guid: 85f0b8668eea0824a8f704a075a9609a
+  - enabled: 1
+    path: Assets/Scenes/OverworldOutsidegrounds.unity
+    guid: 04b4db84c97d0354697ddd4a366c496f
+  - enabled: 1
+    path: Assets/Scenes/OverworldOutsideHome.unity
+    guid: a51c118d10138ad4395a83f9a7a0219f
+  - enabled: 1
+    path: Assets/Scenes/Resting.unity
+    guid: 5f5ffea6a80420040ab76716de5b8f15
+  - enabled: 1
+    path: Assets/Scenes/Shop.unity
+    guid: 01dfb3dff4ec32b46ac8638610c12615
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

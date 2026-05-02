@@ -1,6 +1,7 @@
 using UnityEngine;
 using static BattleManager;
 using static Inventory;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -23,12 +24,14 @@ public class Player : MonoBehaviour
         Inventory = 3,
         Shop = 4,
         Rest = 5,
+        Inv1 = 6,
+        Inv2 = 7,
+        Inv3 = 8,
+        Start = 9,
     }
 
         int Currentinvenpage;
 
-
-    
 
     private SpriteRenderer sr;
 
@@ -41,6 +44,8 @@ public class Player : MonoBehaviour
     public Animator myAnim;
     bool idle;
     bool drink;
+
+    public static Player instance;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -58,6 +63,16 @@ public class Player : MonoBehaviour
         timeincrease = 1;
 
         drink = false;
+
+        if (instance != null) //if another instance of the player is in the scene
+        {
+            Destroy(gameObject); //then destroy it
+        }
+
+        instance = this; //reassign the instance to the current player
+        GameObject.DontDestroyOnLoad(this.gameObject);
+
+
     }
 
     // Update is called once per frame
@@ -190,6 +205,12 @@ public class Player : MonoBehaviour
             invenpage2.SetActive(false);
             invenpage3.SetActive(false);
 
+            if(Input.GetKeyDown(KeyCode.KeypadEnter))
+            {
+
+                State = Playerstates.Inv1;
+                UpdateInventorySelection1();
+            }
 
         }
 
@@ -212,6 +233,98 @@ public class Player : MonoBehaviour
 
         }
 
+
+
+    }
+
+    void UpdateInventorySelection1()
+    {
+        invenpage1.SetActive(true);
+
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            if (CurrentInvenItem < 2)
+                ++CurrentInvenItem;
+        }
+
+        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            if (CurrentInvenItem > 0)
+                --CurrentInvenItem;
+
+        }
+
+        Inventory.UpdateInventorySelection(CurrentInvenItem);
+
+    }
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+
+        if (collision.gameObject.tag.Equals("HomeStairsTop"))
+        {
+
+            SceneManager.LoadScene(4);
+
+
+        }
+
+        if (collision.gameObject.tag.Equals("HomeStairsBottom"))
+        {
+
+            SceneManager.LoadScene(3);
+
+
+        }
+
+        if (collision.gameObject.tag.Equals("DoorOutside"))
+        {
+
+            SceneManager.LoadScene(6);
+
+
+        }
+
+        if (collision.gameObject.tag.Equals("DoorInside"))
+        {
+
+            SceneManager.LoadScene(4);
+
+
+        }
+
+        if (collision.gameObject.tag.Equals("OutsidetoGrounds"))
+        {
+
+            SceneManager.LoadScene(5);
+
+
+        }
+
+        if (collision.gameObject.tag.Equals("OutsidetoHome"))
+        {
+
+            SceneManager.LoadScene(6);
+
+
+        }
+
+        if (collision.gameObject.tag.Equals("OutsidetoTown"))
+        {
+
+            SceneManager.LoadScene(2);
+
+
+        }
+
+        if (collision.gameObject.tag.Equals("TowntoOutside"))
+        {
+
+            SceneManager.LoadScene(5);
+
+
+        }
 
 
     }
