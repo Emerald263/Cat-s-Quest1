@@ -1,10 +1,14 @@
+using System.Collections;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static BattleManager;
 using static Inventory;
-using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+
+    public int Milk;
 
     public float speed;
     public float IdleTimer;
@@ -12,7 +16,25 @@ public class Player : MonoBehaviour
     public GameObject inventory; //inventory UI
     public GameObject invenpage1;
     public GameObject invenpage2;
-    public GameObject invenpage3;
+    public GameObject Startscreen;
+    public int item1;
+    public int item2;
+    public int item3;
+
+    public TextMeshProUGUI milktext;
+    public TextMeshProUGUI keyitem1;
+    public TextMeshProUGUI keyitem2;
+    public TextMeshProUGUI keyitem3;
+
+    public TextMeshProUGUI EXPtext;
+    public TextMeshProUGUI HPtext;
+    public TextMeshProUGUI DEFtext;
+    public TextMeshProUGUI GOLDtext;
+
+
+    public GameObject Textdialoguebox; //textbox UI
+    TextBox targetBox;
+
 
 
     public Playerstates State;
@@ -28,6 +50,7 @@ public class Player : MonoBehaviour
         Inv2 = 7,
         Inv3 = 8,
         Start = 9,
+        Text = 10,
     }
 
         int Currentinvenpage;
@@ -54,10 +77,14 @@ public class Player : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         myAnim = GetComponent<Animator>();
         inventory.SetActive(false);
+        Textdialoguebox.SetActive(false);
+        Startscreen.SetActive(true);
+        targetBox = Textdialoguebox.GetComponent<TextBox>();
+
 
         speed = 0.2f;
 
-        State = Playerstates.Overworld;
+        State = Playerstates.Start;
 
         IdleTimer = 0;
         timeincrease = 1;
@@ -73,12 +100,23 @@ public class Player : MonoBehaviour
         GameObject.DontDestroyOnLoad(this.gameObject);
 
 
+
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKey("x") && (State == Playerstates.Start))
+        {
 
+
+            State = Playerstates.Overworld;
+            Startscreen.SetActive(false);
+
+
+        }
 
         Vector3 newPosition = transform.position;
 
@@ -102,6 +140,17 @@ public class Player : MonoBehaviour
         
         }
 
+        if (Input.GetKey("q"))
+        {
+            State = Playerstates.Text;
+            Textdialoguebox.SetActive(true);
+            StartCoroutine(HandleTextBox());
+
+
+        }
+
+
+
 
         if (Input.GetKey("e"))
         {
@@ -117,7 +166,7 @@ public class Player : MonoBehaviour
             inventory.SetActive(true);
             invenpage1.SetActive(true);
             invenpage2.SetActive(false);
-            invenpage3.SetActive(false);
+
 
             HandleCurrentInventoryPage();
 
@@ -155,6 +204,16 @@ public class Player : MonoBehaviour
 
         IdleTimer = Time.deltaTime + timeincrease;
 
+        milktext.text = "Milk......" + 5.ToString();
+        keyitem1.text = "Sword....." + item1.ToString();
+        keyitem2.text = "Armor....." + item2.ToString();
+        keyitem3.text = "Healstone." + item3.ToString();
+
+
+        EXPtext.text = "EXP" + 0.ToString();
+        HPtext.text = "HP" + 50.ToString();
+        DEFtext.text = "DEF" + 10.ToString();
+        GOLDtext.text = "GOLD" + 500.ToString();
     }
 
 
@@ -181,6 +240,23 @@ public class Player : MonoBehaviour
         return dir;
     }
 
+
+    #region TextBox
+    IEnumerator HandleTextBox()
+    {
+        Debug.Log("Handle TextBox");
+        yield return StartCoroutine(targetBox.Typecharacterdialogue($"testing"));
+
+        yield return new WaitForSeconds(1f);
+
+
+
+
+    }
+
+#endregion
+
+    #region Inventory
     void HandleCurrentInventoryPage()
     {
 
@@ -203,14 +279,7 @@ public class Player : MonoBehaviour
             Debug.Log("Cat");
             invenpage1.SetActive(true);
             invenpage2.SetActive(false);
-            invenpage3.SetActive(false);
-
-            if(Input.GetKeyDown(KeyCode.KeypadEnter))
-            {
-
-                State = Playerstates.Inv1;
-                UpdateInventorySelection1();
-            }
+        
 
         }
 
@@ -220,51 +289,25 @@ public class Player : MonoBehaviour
             Debug.Log("Cat");
             invenpage1.SetActive(false);
             invenpage2.SetActive(true);
-            invenpage3.SetActive(false);
+      
         }
 
-        if (Currentinvenpage == 2)
-        {
 
-            Debug.Log("Items");
-            invenpage1.SetActive(false);
-            invenpage2.SetActive(false);
-            invenpage3.SetActive(true);
-
-        }
 
 
 
     }
 
-    void UpdateInventorySelection1()
-    {
-        invenpage1.SetActive(true);
+    #endregion
 
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            if (CurrentInvenItem < 2)
-                ++CurrentInvenItem;
-        }
-
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            if (CurrentInvenItem > 0)
-                --CurrentInvenItem;
-
-        }
-
-        Inventory.UpdateInventorySelection(CurrentInvenItem);
-
-    }
-
-
+    #region Collision
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
         if (collision.gameObject.tag.Equals("HomeStairsTop"))
         {
-
+            inventory.SetActive(false);
+            Textdialoguebox.SetActive(false);
             SceneManager.LoadScene(4);
 
 
@@ -272,7 +315,8 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.tag.Equals("HomeStairsBottom"))
         {
-
+            inventory.SetActive(false);
+            Textdialoguebox.SetActive(false);
             SceneManager.LoadScene(3);
 
 
@@ -280,7 +324,8 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.tag.Equals("DoorOutside"))
         {
-
+            inventory.SetActive(false);
+            Textdialoguebox.SetActive(false);
             SceneManager.LoadScene(6);
 
 
@@ -288,7 +333,8 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.tag.Equals("DoorInside"))
         {
-
+            inventory.SetActive(false);
+            Textdialoguebox.SetActive(false);
             SceneManager.LoadScene(4);
 
 
@@ -296,7 +342,8 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.tag.Equals("OutsidetoGrounds"))
         {
-
+            inventory.SetActive(false);
+            Textdialoguebox.SetActive(false);
             SceneManager.LoadScene(5);
 
 
@@ -304,7 +351,8 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.tag.Equals("OutsidetoHome"))
         {
-
+            inventory.SetActive(false);
+            Textdialoguebox.SetActive(false);
             SceneManager.LoadScene(6);
 
 
@@ -312,7 +360,8 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.tag.Equals("OutsidetoTown"))
         {
-
+            inventory.SetActive(false);
+            Textdialoguebox.SetActive(false);
             SceneManager.LoadScene(2);
 
 
@@ -321,7 +370,151 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag.Equals("TowntoOutside"))
         {
 
+            inventory.SetActive(false);
+            Textdialoguebox.SetActive(false);
+
             SceneManager.LoadScene(5);
+
+
+        }
+
+        if (collision.gameObject.tag.Equals("ShopDoor"))
+        {
+            State = Playerstates.Overworld;
+
+            SceneManager.LoadScene(8);
+
+
+        }
+
+        if (collision.gameObject.tag.Equals("Enemy"))
+        {
+
+
+            StartCoroutine(SetupBattle());
+
+
+        }
+
+        if (collision.gameObject.tag.Equals("Milk"))
+        {
+
+
+            StartCoroutine(MilkGet());
+
+
+        }
+
+        if (collision.gameObject.tag.Equals("Item1"))
+        {
+
+
+            StartCoroutine(Item1Get());
+
+
+        }
+
+        if (collision.gameObject.tag.Equals("Item2"))
+        {
+
+
+            StartCoroutine(Item2Get());
+
+
+        }
+
+        if (collision.gameObject.tag.Equals("Item3"))
+        {
+
+
+            StartCoroutine(Item3Get());
+
+
+        }
+
+
+    }
+
+    #endregion
+
+    public IEnumerator SetupBattle()
+    {
+        State = Playerstates.Battle;
+        Textdialoguebox.SetActive(true);
+
+        yield return StartCoroutine(targetBox.Typecharacterdialogue($"So, you don't wanna mind your buisness? Well then, I'll show you a lesson!"));
+        SceneManager.LoadScene(2);
+        yield return new WaitForSeconds(1f);
+        {
+
+
+
+        }
+
+
+    }
+
+    public IEnumerator MilkGet()
+    {
+
+        Textdialoguebox.SetActive(true);
+
+        Milk++;
+        yield return StartCoroutine(targetBox.Typecharacterdialogue($"Milk Obtained!"));
+        yield return new WaitForSeconds(1f);
+        {
+
+
+
+        }
+
+
+    }
+
+    public IEnumerator Item1Get()
+    {
+
+        Textdialoguebox.SetActive(true);
+
+        item1++;
+        yield return StartCoroutine(targetBox.Typecharacterdialogue($"Item Obtained!"));
+        yield return new WaitForSeconds(1f);
+        {
+
+
+
+        }
+
+
+    }
+
+    public IEnumerator Item2Get()
+    {
+
+        Textdialoguebox.SetActive(true);
+
+        item2++;
+        yield return StartCoroutine(targetBox.Typecharacterdialogue($"Item Obtained!"));
+        yield return new WaitForSeconds(1f);
+        {
+
+
+
+        }
+
+
+    }
+
+    public IEnumerator Item3Get()
+    {
+
+        Textdialoguebox.SetActive(true);
+
+        item3++;
+        yield return StartCoroutine(targetBox.Typecharacterdialogue($"Item Obtained!"));
+        yield return new WaitForSeconds(1f);
+        {
+
 
 
         }

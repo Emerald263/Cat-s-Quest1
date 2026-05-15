@@ -15,21 +15,22 @@ public class BattleDialogueBox : MonoBehaviour
     [SerializeField] GameObject actionselector;
 
     [SerializeField] GameObject moveselectorCat;
-    [SerializeField] GameObject moveselectorCompanion;
-    [SerializeField] GameObject movedetailsCat;
-    [SerializeField] GameObject movedetailsCompanion;
 
-    [SerializeField] GameObject ItemList;
+    [SerializeField] GameObject movedetailsCat;
+
+
+
 
     [SerializeField] List<TextMeshProUGUI> actionTexts;
     [SerializeField] List<TextMeshProUGUI> moveTextsC;
-    [SerializeField] List<TextMeshProUGUI> moveTextsCn;
+
     [SerializeField] List<TextMeshProUGUI> moves;
 
-    [SerializeField] TextMeshProUGUI descriptionC;
-    [SerializeField] TextMeshProUGUI descriptionCn;
+    [SerializeField] TextMeshProUGUI description1;
+    [SerializeField] TextMeshProUGUI description2;
 
-    [SerializeField] List<TextMeshProUGUI> Items;
+
+
 
 
     public void SetDialogue(string dialogue)
@@ -71,17 +72,15 @@ public class BattleDialogueBox : MonoBehaviour
         movedetailsCat.SetActive(enabled);
     }
 
-    public void EnableMoveSelectorCompanion(bool enabled)
-    {
-        moveselectorCompanion.SetActive(enabled);
-        movedetailsCompanion.SetActive(enabled);
-    }
+
 
     public void EnableItemSelector(bool enabled)
     {
-        ItemList.SetActive(enabled);
+
 
     }
+
+
 
 
 
@@ -112,31 +111,8 @@ public class BattleDialogueBox : MonoBehaviour
 
     }
 
-    public void UpdateMoveSelectionCompanion(int CurrentMoveCompanion)
-    {
-        for (int i = 0; i < moveTextsCn.Count; i++)
-        {
-            if (i == CurrentMoveCompanion)
-                moveTextsCn[i].color = highlightedColor;
 
-            else
-                moveTextsCn[i].color = Color.black;
-        }
 
-    }
-
-    public void UpdateItemSelection(int CurrentItem)
-    {
-        for (int i = 0; i < moveTextsCn.Count; i++)
-        {
-            if (i == CurrentItem)
-                moveTextsCn[i].color = highlightedColor;
-
-            else
-                moveTextsCn[i].color = Color.black;
-        }
-
-    }
 
     public void SetMoveName()
     {

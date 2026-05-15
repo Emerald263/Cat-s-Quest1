@@ -12,6 +12,13 @@ TagManager:
   - OutsidetoHome
   - OutsidetoTown
   - TowntoOutside
+  - ShopDoor
+  - Shop
+  - Enemy
+  - Milk
+  - Item1
+  - Item2
+  - Item3
   layers:
   - Default
   - TransparentFX

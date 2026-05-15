@@ -9,6 +9,7 @@ public class Inventory : MonoBehaviour
     [SerializeField] Color highlightedColor;
 
     [SerializeField] GameObject InventoryScreen;
+    [SerializeField] GameObject Character;
     [SerializeField] GameObject Page1;
     [SerializeField] GameObject Page2;
     [SerializeField] GameObject Page3;
@@ -19,12 +20,11 @@ public class Inventory : MonoBehaviour
     [SerializeField] GameObject selector1;
     [SerializeField] GameObject selector2;
 
-    public void EnablePlayerInventory(bool enabled)
-    {
-        InventoryScreen.SetActive(enabled);
-    }
+
+    
 
 
+    #region SelectorEnablers
     public void EnableSelector1(bool enabled)
     {
         selector1.SetActive(enabled);
@@ -34,7 +34,13 @@ public class Inventory : MonoBehaviour
     {
         selector2.SetActive(enabled);
     }
+    #endregion
 
+    #region PlayerInventory
+    public void EnablePlayerInventory(bool enabled)
+    {
+        InventoryScreen.SetActive(enabled);
+    }
     public void UpdateInventorySelection(int CurrentInvenItem)
     {
         for (int i = 0; i < ItemList1.Count; i++)
@@ -47,8 +53,7 @@ public class Inventory : MonoBehaviour
         }
 
     }
-
-
+    #endregion
 
 }
 

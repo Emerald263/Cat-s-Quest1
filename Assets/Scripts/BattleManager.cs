@@ -18,16 +18,22 @@ public class BattleManager : MonoBehaviour
     Animator anim;
     public bool Catidle;
     public bool Catattck;
-    public bool Companionidle;
+    public bool Catdrink;
     public bool Companionattck;
     public bool Enemyidle;
-    public bool Enemyattack;
+    public bool EAttack;
 
     public TextMeshPro existsIn3DSpaceText; //the TextMeshPro object exists in scene space, NOT canvas or screenspace
     public TextMeshProUGUI existsInScreenSpace; //any canvas based textMeshPro objects you add will be this data type
 
 
     [SerializeField] BattleDialogueBox dialogueBox;
+    public TextMeshProUGUI milktext;
+    public TextMeshProUGUI attacktext;
+    public TextMeshProUGUI itemtext;
+
+    public TextMeshProUGUI Playerhealth;
+    public TextMeshProUGUI Enemyhealth;
 
 
     public enum Battlestates
@@ -48,7 +54,7 @@ public class BattleManager : MonoBehaviour
     public float SP;
     public float attack;
     public float spell;
-    public float HP;
+    public int HP;
     public float EXP;
     public float EXPfinal;
     public float GP;
@@ -72,6 +78,8 @@ public class BattleManager : MonoBehaviour
     public int Milk;
     public int Treat;
 
+    static int milkheal;
+
 
 
 
@@ -86,13 +94,20 @@ public class BattleManager : MonoBehaviour
     private void Start()
     {
 
+
         soundEffects = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
 
         dialogueBox.EnableActionSelector(false);
         dialogueBox.EnableMoveSelectorCat(false);
-        dialogueBox.EnableMoveSelectorCompanion(false);
-        dialogueBox.EnableItemSelector(false);
+        dialogueBox.EnableMoveSelectorCat(false);
+
+   
+
+
+          itemtext.enabled = false;
+        milktext.enabled = false;
+        attacktext.enabled = false;
         SetupBattle();
 
 
@@ -101,7 +116,7 @@ public class BattleManager : MonoBehaviour
         SP = 10;
         attack = 10;
         spell = 1;
-        HP = 50;
+        HP = 10;
         EXP = 0;
         GP = 0;
         Level = 1;
@@ -115,11 +130,12 @@ public class BattleManager : MonoBehaviour
 
         armor = Level * 10;
         attack = (Level * Lvlattack) + 10;
-        HP = (Level * 10) + 40;
         spell = (Level * 15) + 15;
 
         Milk = 5;
         Treat = 5;
+
+        milkheal = 3;
 
 
 
@@ -130,7 +146,7 @@ public class BattleManager : MonoBehaviour
 
 
     // Update is called once per frame
-    private void Update()
+    void Update()
     {
 
         if (state == Battlestates.PlayerAction)
@@ -145,12 +161,7 @@ public class BattleManager : MonoBehaviour
             CatAction();
 
         }
-        else if (state == Battlestates.PlayerActionCompanion)
-        {
 
-            CompanionAction();
-
-        }
 
         if (Input.GetKeyDown(KeyCode.L))
         {
@@ -158,13 +169,25 @@ public class BattleManager : MonoBehaviour
             eneHP = -1;
         }
 
-        anim.SetBool("catattck", Catattck);
-        anim.SetBool("catidl", Catidle);
+        anim.SetBool("attack", Catattck);
+        anim.SetBool("battleidle", Catidle);
+        anim.SetBool("drink", Catdrink);
+
+        anim.SetBool("EnemyAttack", EAttack);
+
+        milktext.text = "Milk......" + Milk.ToString();
+        attacktext.text = "attacks the enemy".ToString();
+
+        Playerhealth.text = "HP:" + HP.ToString();
+        Enemyhealth.text = "HP:" + eneHP.ToString();
+
 
     }
     void HandleActionSelection()
     {
-
+        Catidle = true;
+        Catattck = false;
+        Catdrink = false;
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             if (CurrentActionBattle < 1)
@@ -202,6 +225,8 @@ public class BattleManager : MonoBehaviour
 
         }
 
+        
+
     }
 
 
@@ -209,29 +234,38 @@ public class BattleManager : MonoBehaviour
 
     void CatAction()
     {
-        Debug.Log("Cat");
+        EAttack = false;
+        Debug.Log("CatAction");
         state = Battlestates.PlayerActionCat;
         dialogueBox.EnableActionSelector(false);
         dialogueBox.EnableDialogueText(false);
         dialogueBox.EnableMoveSelectorCat(true);
         HandleMoveSelectionCat();
-        Catidle = true;
+
 
     }
 
     void HandleMoveSelectionCat()
     {
 
+        Catidle = true;
+        Catattck = false;
+        Catdrink = false;
+
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            if (CurrentMoveCat < 2)
+            if (CurrentMoveCat < 1)
                 ++CurrentMoveCat;
+            milktext.enabled = true;
+            attacktext.enabled = false;
         }
 
         else if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             if (CurrentMoveCat > 0)
                 --CurrentMoveCat;
+            milktext.enabled = false;
+            attacktext.enabled = true;
 
         }
 
@@ -242,7 +276,7 @@ public class BattleManager : MonoBehaviour
 
             if (CurrentMoveCat == 0)
             {
-                Debug.Log("Cat");
+                Debug.Log("CatMove");
                 dialogueBox.EnableDialogueText(true);
                 dialogueBox.EnableMoveSelectorCat(false);
                 state = Battlestates.Busy;
@@ -251,203 +285,69 @@ public class BattleManager : MonoBehaviour
 
             }
 
+
             if (CurrentMoveCat == 1)
             {
-
-                Debug.Log("Cat");
+                Debug.Log("Catdrink");
                 dialogueBox.EnableDialogueText(true);
                 dialogueBox.EnableMoveSelectorCat(false);
                 state = Battlestates.Busy;
-                StartCoroutine(CatSpecial());
+                StartCoroutine(CatItem());
 
             }
-
-            if (CurrentMoveCat == 2)
-            {
-
-                Debug.Log("Items");
-                dialogueBox.EnableDialogueText(true);
-                dialogueBox.EnableMoveSelectorCat(false);
-                state = Battlestates.Busy;
-                StartCoroutine(ItemsCat());
-
-            }
-
 
 
         }
 
     }
 
-    public IEnumerator CatAttack()
+    void ItemSelection()
     {
-
-        yield return StartCoroutine(dialogueBox.TypeDialogue($"Cat"));
-        yield return new WaitForSeconds(5f);
-        {
-            Catidle = false;
-            Catattck = true;
-            --eneHP;
-
-            if (eneHP < 1)
-            {
-
-                enemydeath();
-
-            }
-
-            CompanionAction();
-        }
-    }
-
-    public IEnumerator CatSpecial()
-    {
-
-        yield return StartCoroutine(dialogueBox.TypeDialogue($"Cat"));
-        yield return new WaitForSeconds(5f);
-        {
-            Catidle = false;
-            Catattck = true;
-            --eneHP;
-
-            if (eneHP < 1)
-            {
-
-                enemydeath();
-
-            }
-
-            CompanionAction();
-        }
-    }
-
-    public IEnumerator ItemsCat()
-    {
-        yield return StartCoroutine(dialogueBox.TypeDialogue($"Items"));
-        yield return new WaitForSeconds(2f);
 
         Debug.Log("Items");
+        dialogueBox.EnableDialogueText(true);
+        dialogueBox.EnableMoveSelectorCat(false);
+        milktext.enabled = true;
 
-        dialogueBox.EnableItemSelector(true);
-        state = Battlestates.PlayerActionItem;
-
-
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            if (CurrentMoveItem < 1)
-                ++CurrentMoveItem;
-        }
-
-        else if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            if (CurrentMoveItem > 0)
-                --CurrentMoveItem;
-
-        }
-
-        dialogueBox.UpdateItemSelection(CurrentMoveItem);
-
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.F))
         {
 
-            if (CurrentMoveCat == 0)
-            {
-                Debug.Log("Milk");
-                dialogueBox.EnableDialogueText(true);
-                dialogueBox.EnableItemSelector(false);
-                state = Battlestates.Busy;
+            Milk--;
 
-                Milk--;
+            HP += milkheal;
 
-                HandleMoveSelectionCompanion();
+            milktext.enabled = false;
 
+            EnemyAction();
 
-            }
-
-            if (CurrentMoveCat == 1)
-            {
-
-                Debug.Log("Treat");
-                dialogueBox.EnableDialogueText(true);
-                dialogueBox.EnableItemSelector(false);
-                state = Battlestates.Busy;
-
-                Treat--;
-
-                HandleMoveSelectionCompanion();
-
-            }
         }
 
-            if (Input.GetKeyDown(KeyCode.R))
+
+        if (Input.GetKeyDown(KeyCode.R))
         {
 
             HandleMoveSelectionCat();
 
 
         }
-
-
-
-
     }
 
-    void HandleMoveSelectionCompanion()
+
+
+
+
+
+
+
+    public IEnumerator CatAttack()
     {
-
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            if (CurrentMoveCompanion < 2)
-                ++CurrentMoveCompanion;
-        }
-
-        else if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            if (CurrentMoveCompanion > 0)
-                --CurrentMoveCompanion;
-
-        }
-
-        dialogueBox.UpdateMoveSelectionCompanion(CurrentMoveCompanion);
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-
-            if (CurrentMoveCompanion == 0)
-            {
-                Debug.Log("Companion");
-                dialogueBox.EnableDialogueText(true);
-                dialogueBox.EnableMoveSelectorCompanion(false);
-                state = Battlestates.Busy;
-                StartCoroutine(CompanionAttack());
-
-
-            }
-
-            if (CurrentMoveCompanion == 1)
-            {
-
-                Debug.Log("Companion");
-                dialogueBox.EnableDialogueText(true);
-                dialogueBox.EnableMoveSelectorCompanion(false);
-                state = Battlestates.Busy;
-                StartCoroutine(CompanionSpecial());
-
-            }
-
-
-
-        }
-
-
-    }
-
-    public IEnumerator CompanionAttack()
-    {
-
-        yield return StartCoroutine(dialogueBox.TypeDialogue($"Companion"));
+        Catidle = false;
+        Catattck = true;
+        Catdrink = false;
+        yield return StartCoroutine(dialogueBox.TypeDialogue($"You Punched! ...It's rather weak"));
         yield return new WaitForSeconds(5f);
         {
+
             --eneHP;
 
             if (eneHP < 1)
@@ -458,49 +358,31 @@ public class BattleManager : MonoBehaviour
             }
 
             EnemyAction();
-
         }
     }
 
-    public IEnumerator CompanionSpecial()
-    {
 
-        yield return StartCoroutine(dialogueBox.TypeDialogue($"Companion"));
-        yield return new WaitForSeconds(5f);
-        {
-            --eneHP;
-
-            if (eneHP < 1)
-            {
-
-                enemydeath();
-
-            }
-
-            EnemyAction();
-
-        }
-    }
-
-    void CompanionAction()
+    public IEnumerator CatItem()
     {
         Catidle = false;
         Catattck = false;
-        Debug.Log("Companion");
-        state = Battlestates.PlayerActionCompanion;
-        dialogueBox.EnableActionSelector(false);
-        dialogueBox.EnableDialogueText(false);
-        dialogueBox.EnableMoveSelectorCompanion(true);
-        HandleMoveSelectionCompanion();
-        Companionidle = true;
-
-        if (eneHP < 0)
+        Catdrink = true;
+        yield return StartCoroutine(dialogueBox.TypeDialogue($"You drank some milk! It's rather refreshing"));
+        yield return new WaitForSeconds(5f);
         {
+            Catidle = false;
+            Catattck = true;
 
-            enemydeath();
+            Milk--;
 
+            HP += milkheal;
+
+            EnemyAction();
         }
     }
+
+
+
 
 
     void EnemyAction()
@@ -510,20 +392,24 @@ public class BattleManager : MonoBehaviour
 
         StartCoroutine(EnemyAttack());
 
-
+        Catidle = true;
+        Catattck = false;
+        Catdrink = false;
 
     }
 
     public IEnumerator EnemyAttack()
     {
+
+        EAttack = true;
         for (int i = 0; i < 1; i++)
         {
 
             yield return StartCoroutine(dialogueBox.TypeDialogue($"The Enemy Attacked"));
             yield return new WaitForSeconds(5f);
 
-            bool Enemyattack = true;
 
+            HP--;
 
         }
 
@@ -562,7 +448,7 @@ public class BattleManager : MonoBehaviour
         yield return StartCoroutine(dialogueBox.TypeDialogue($"You fled"));
         {
             //yield return new WaitForSeconds(1);
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(8);
             State = Playerstates.Overworld;
             EXPfinal = EXP + 43;
             GPfinal = GP + 15;
@@ -575,7 +461,7 @@ public class BattleManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         {
             //yield return new WaitForSeconds(1);
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(8);
             State = Playerstates.Overworld;
             EXPfinal = EXP + 50;
             GPfinal = GP + 15;
@@ -590,7 +476,7 @@ public class BattleManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         {
             //yield return new WaitForSeconds(1);
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(8);
             State = Playerstates.Overworld;
             EXPfinal = EXP + 50;
             GPfinal = GP + 15;
