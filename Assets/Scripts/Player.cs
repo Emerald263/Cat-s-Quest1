@@ -8,6 +8,10 @@ using static Inventory;
 public class Player : MonoBehaviour
 {
 
+    //audio variables
+    public AudioSource soundEffects;
+    public AudioClip[] sounds; // Public variable to access the Audio Source component
+
     public int Milk;
 
     public float speed;
@@ -20,6 +24,7 @@ public class Player : MonoBehaviour
     public int item1;
     public int item2;
     public int item3;
+    public int gold;
 
     public TextMeshProUGUI milktext;
     public TextMeshProUGUI keyitem1;
@@ -31,11 +36,12 @@ public class Player : MonoBehaviour
     public TextMeshProUGUI DEFtext;
     public TextMeshProUGUI GOLDtext;
 
+    public float dead;
 
     public GameObject Textdialoguebox; //textbox UI
     TextBox targetBox;
 
-
+    public GameObject player; 
 
     public Playerstates State;
     public enum Playerstates
@@ -81,6 +87,9 @@ public class Player : MonoBehaviour
         Startscreen.SetActive(true);
         targetBox = Textdialoguebox.GetComponent<TextBox>();
 
+        dead = 0;
+
+        gold = 500;
 
         speed = 0.2f;
 
@@ -100,7 +109,7 @@ public class Player : MonoBehaviour
         GameObject.DontDestroyOnLoad(this.gameObject);
 
 
-
+        Milk = 5;
 
 
     }
@@ -155,7 +164,7 @@ public class Player : MonoBehaviour
         if (Input.GetKey("e"))
         {
             State = Playerstates.Inventory;
-
+            soundEffects.PlayOneShot(sounds[2], .7f);
 
 
         }
@@ -170,6 +179,28 @@ public class Player : MonoBehaviour
 
             HandleCurrentInventoryPage();
 
+
+        }
+
+        if (State == Playerstates.Shop)
+        {
+            if (Input.GetKey("x"))
+            {
+
+                State = Playerstates.Overworld;
+
+                Textdialoguebox.SetActive(false);
+
+            }
+
+            if (Input.GetKey("t"))
+            {
+
+
+                StartCoroutine(SellAll());
+
+
+            }
 
         }
 
@@ -189,7 +220,12 @@ public class Player : MonoBehaviour
 
         }
 
+        if (dead == 1)
+        {
 
+            StartCoroutine(Surrender());
+
+        }
 
 
 
@@ -204,16 +240,16 @@ public class Player : MonoBehaviour
 
         IdleTimer = Time.deltaTime + timeincrease;
 
-        milktext.text = "Milk......" + 5.ToString();
-        keyitem1.text = "Sword....." + item1.ToString();
-        keyitem2.text = "Armor....." + item2.ToString();
-        keyitem3.text = "Healstone." + item3.ToString();
+        milktext.text = "Milk......" + Milk.ToString();
+        keyitem1.text = "Yarn....." + item1.ToString();
+        keyitem2.text = "Treats....." + item2.ToString();
+        keyitem3.text = "Toys." + item3.ToString();
 
 
         EXPtext.text = "EXP" + 0.ToString();
         HPtext.text = "HP" + 50.ToString();
         DEFtext.text = "DEF" + 10.ToString();
-        GOLDtext.text = "GOLD" + 500.ToString();
+        GOLDtext.text = "GOLD" + gold.ToString();
     }
 
 
@@ -324,6 +360,7 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.tag.Equals("DoorOutside"))
         {
+            soundEffects.PlayOneShot(sounds[0], .7f);
             inventory.SetActive(false);
             Textdialoguebox.SetActive(false);
             SceneManager.LoadScene(6);
@@ -333,6 +370,7 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.tag.Equals("DoorInside"))
         {
+            soundEffects.PlayOneShot(sounds[0], .7f);
             inventory.SetActive(false);
             Textdialoguebox.SetActive(false);
             SceneManager.LoadScene(4);
@@ -396,6 +434,15 @@ public class Player : MonoBehaviour
 
         }
 
+        if (collision.gameObject.tag.Equals("ShopNPC"))
+        {
+
+
+            StartCoroutine(SetupShop());
+
+
+        }
+
         if (collision.gameObject.tag.Equals("Milk"))
         {
 
@@ -443,7 +490,32 @@ public class Player : MonoBehaviour
         Textdialoguebox.SetActive(true);
 
         yield return StartCoroutine(targetBox.Typecharacterdialogue($"So, you don't wanna mind your buisness? Well then, I'll show you a lesson!"));
-        SceneManager.LoadScene(2);
+
+        yield return new WaitForSeconds(1f);
+        {
+
+
+
+        }
+        Textdialoguebox.SetActive(false);
+        Debug.Log("BattleStart");
+
+        SceneManager.LoadScene(1);
+
+        player.SetActive(false);
+
+        dead = 1; 
+    }
+
+    public IEnumerator SetupShop()
+    {
+        State = Playerstates.Shop;
+        Textdialoguebox.SetActive(true);
+
+        yield return StartCoroutine(targetBox.Typecharacterdialogue($"Wanna sell your items? You can here!"));
+
+        yield return StartCoroutine(targetBox.Typecharacterdialogue($"Sell your items? [T]"));
+
         yield return new WaitForSeconds(1f);
         {
 
@@ -452,12 +524,76 @@ public class Player : MonoBehaviour
         }
 
 
+
+    }
+
+
+    public IEnumerator SellAll()
+    {
+
+        yield return StartCoroutine(targetBox.Typecharacterdialogue($"Everything Sold! Thank you for your buisness!"));
+        yield return new WaitForSeconds(1f);
+        {
+
+            while (item1 > 0)
+            {
+
+                item1--;
+                gold += 25;
+
+            }
+
+            while (item2 > 0)
+            {
+
+                item2--;
+                gold += 25;
+
+            }
+
+            while (item3 > 0)
+            {
+
+                item3--;
+                gold += 25;
+
+            }
+
+        }
+
+       
+
+        Textdialoguebox.SetActive(false);
+        State = Playerstates.Overworld;
+
+    }
+
+    public IEnumerator Surrender()
+    {
+        State = Playerstates.Overworld;
+
+        player.SetActive(true);
+
+        Textdialoguebox.SetActive(true);
+
+        yield return StartCoroutine(targetBox.Typecharacterdialogue($"Okay, Okay! You Win! Just please spare me!"));
+
+        yield return new WaitForSeconds(1f);
+        {
+
+
+
+        }
+        Textdialoguebox.SetActive(false);
+
     }
 
     public IEnumerator MilkGet()
     {
 
         Textdialoguebox.SetActive(true);
+
+        soundEffects.PlayOneShot(sounds[1], .7f);
 
         Milk++;
         yield return StartCoroutine(targetBox.Typecharacterdialogue($"Milk Obtained!"));
@@ -468,13 +604,15 @@ public class Player : MonoBehaviour
 
         }
 
-
+        Textdialoguebox.SetActive(false);
     }
 
     public IEnumerator Item1Get()
     {
 
         Textdialoguebox.SetActive(true);
+
+        soundEffects.PlayOneShot(sounds[1], .7f);
 
         item1++;
         yield return StartCoroutine(targetBox.Typecharacterdialogue($"Item Obtained!"));
@@ -484,7 +622,7 @@ public class Player : MonoBehaviour
 
 
         }
-
+        Textdialoguebox.SetActive(false);
 
     }
 
@@ -492,6 +630,8 @@ public class Player : MonoBehaviour
     {
 
         Textdialoguebox.SetActive(true);
+
+        soundEffects.PlayOneShot(sounds[1], .7f);
 
         item2++;
         yield return StartCoroutine(targetBox.Typecharacterdialogue($"Item Obtained!"));
@@ -501,7 +641,7 @@ public class Player : MonoBehaviour
 
 
         }
-
+        Textdialoguebox.SetActive(false);
 
     }
 
@@ -509,6 +649,8 @@ public class Player : MonoBehaviour
     {
 
         Textdialoguebox.SetActive(true);
+
+        soundEffects.PlayOneShot(sounds[1], .7f);
 
         item3++;
         yield return StartCoroutine(targetBox.Typecharacterdialogue($"Item Obtained!"));
@@ -518,7 +660,7 @@ public class Player : MonoBehaviour
 
 
         }
-
+        Textdialoguebox.SetActive(false);
 
     }
 

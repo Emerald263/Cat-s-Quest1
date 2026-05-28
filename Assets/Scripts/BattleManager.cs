@@ -23,6 +23,15 @@ public class BattleManager : MonoBehaviour
     public bool Enemyidle;
     public bool EAttack;
 
+    public Animator CatC; //Reference to the Player's animator
+    public Animator EnemyC; // Reference to the Enemy's animator
+    public Animator Slash; // Reference to the Slash's animator
+
+    public Animator Health; // Reference to the Health's animator
+    public Animator HPminus1; // Reference to the HP1's animator
+    public Animator HPminus2; // Reference to the HP2's animator
+    public Animator HPaddheal; // Reference to the HP3's animator
+
     public TextMeshPro existsIn3DSpaceText; //the TextMeshPro object exists in scene space, NOT canvas or screenspace
     public TextMeshProUGUI existsInScreenSpace; //any canvas based textMeshPro objects you add will be this data type
 
@@ -80,7 +89,7 @@ public class BattleManager : MonoBehaviour
 
     static int milkheal;
 
-
+    public Player Playervalues;
 
 
     Battlestates state;
@@ -341,6 +350,8 @@ public class BattleManager : MonoBehaviour
 
     public IEnumerator CatAttack()
     {
+
+        soundEffects.PlayOneShot(sounds[2], .7f);
         Catidle = false;
         Catattck = true;
         Catdrink = false;
@@ -364,6 +375,8 @@ public class BattleManager : MonoBehaviour
 
     public IEnumerator CatItem()
     {
+
+        soundEffects.PlayOneShot(sounds[0], .7f);
         Catidle = false;
         Catattck = false;
         Catdrink = true;
@@ -401,11 +414,13 @@ public class BattleManager : MonoBehaviour
     public IEnumerator EnemyAttack()
     {
 
-        EAttack = true;
+        soundEffects.PlayOneShot(sounds[1], .7f); //play death sound effect
+
+        EnemyC.Play("Attack");
         for (int i = 0; i < 1; i++)
         {
 
-            yield return StartCoroutine(dialogueBox.TypeDialogue($"The Enemy Attacked"));
+            yield return StartCoroutine(dialogueBox.TypeDialogue($"The Enemy Attacked! ...It's also rather weak"));
             yield return new WaitForSeconds(5f);
 
 
@@ -429,7 +444,7 @@ public class BattleManager : MonoBehaviour
     {
 
 
-        yield return StartCoroutine(dialogueBox.TypeDialogue($"Alley Cats"));
+        yield return StartCoroutine(dialogueBox.TypeDialogue($"An Alley Cat attacked!"));
         yield return new WaitForSeconds(1f);
 
         Playeraction();
@@ -461,7 +476,7 @@ public class BattleManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         {
             //yield return new WaitForSeconds(1);
-            SceneManager.LoadScene(8);
+            SceneManager.LoadScene(2);
             State = Playerstates.Overworld;
             EXPfinal = EXP + 50;
             GPfinal = GP + 15;
@@ -476,7 +491,7 @@ public class BattleManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         {
             //yield return new WaitForSeconds(1);
-            SceneManager.LoadScene(8);
+            SceneManager.LoadScene(2);
             State = Playerstates.Overworld;
             EXPfinal = EXP + 50;
             GPfinal = GP + 15;

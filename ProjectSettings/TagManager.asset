@@ -19,6 +19,7 @@ TagManager:
   - Item1
   - Item2
   - Item3
+  - ShopNPC
   layers:
   - Default
   - TransparentFX
