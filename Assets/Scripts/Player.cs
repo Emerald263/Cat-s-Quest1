@@ -80,6 +80,7 @@ public class Player : MonoBehaviour
     void Start()
     {
 
+
         sr = GetComponent<SpriteRenderer>();
         myAnim = GetComponent<Animator>();
         inventory.SetActive(false);
@@ -344,7 +345,7 @@ public class Player : MonoBehaviour
         {
             inventory.SetActive(false);
             Textdialoguebox.SetActive(false);
-            SceneManager.LoadScene(4);
+            SceneManager.LoadScene(1);
 
 
         }
@@ -353,7 +354,7 @@ public class Player : MonoBehaviour
         {
             inventory.SetActive(false);
             Textdialoguebox.SetActive(false);
-            SceneManager.LoadScene(3);
+            SceneManager.LoadScene(0);
 
 
         }
@@ -363,7 +364,7 @@ public class Player : MonoBehaviour
             soundEffects.PlayOneShot(sounds[0], .7f);
             inventory.SetActive(false);
             Textdialoguebox.SetActive(false);
-            SceneManager.LoadScene(6);
+            SceneManager.LoadScene(5);
 
 
         }
@@ -373,7 +374,7 @@ public class Player : MonoBehaviour
             soundEffects.PlayOneShot(sounds[0], .7f);
             inventory.SetActive(false);
             Textdialoguebox.SetActive(false);
-            SceneManager.LoadScene(4);
+            SceneManager.LoadScene(1);
 
 
         }
@@ -382,7 +383,7 @@ public class Player : MonoBehaviour
         {
             inventory.SetActive(false);
             Textdialoguebox.SetActive(false);
-            SceneManager.LoadScene(5);
+            SceneManager.LoadScene(4);
 
 
         }
@@ -391,7 +392,7 @@ public class Player : MonoBehaviour
         {
             inventory.SetActive(false);
             Textdialoguebox.SetActive(false);
-            SceneManager.LoadScene(6);
+            SceneManager.LoadScene(5);
 
 
         }
@@ -411,7 +412,7 @@ public class Player : MonoBehaviour
             inventory.SetActive(false);
             Textdialoguebox.SetActive(false);
 
-            SceneManager.LoadScene(5);
+            SceneManager.LoadScene(4);
 
 
         }
@@ -509,11 +510,10 @@ public class Player : MonoBehaviour
         Textdialoguebox.SetActive(false);
         Debug.Log("BattleStart");
 
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(3);
 
         player.SetActive(false);
 
-        dead = 1; 
     }
 
     public IEnumerator SetupShop()

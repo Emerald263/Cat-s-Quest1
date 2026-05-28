@@ -463,7 +463,7 @@ public class BattleManager : MonoBehaviour
         yield return StartCoroutine(dialogueBox.TypeDialogue($"You fled"));
         {
             //yield return new WaitForSeconds(1);
-            SceneManager.LoadScene(8);
+            SceneManager.LoadScene(2);
             State = Playerstates.Overworld;
             EXPfinal = EXP + 43;
             GPfinal = GP + 15;
