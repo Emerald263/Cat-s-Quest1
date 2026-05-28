@@ -247,7 +247,7 @@ public class Player : MonoBehaviour
 
 
         EXPtext.text = "EXP" + 0.ToString();
-        HPtext.text = "HP" + 50.ToString();
+        HPtext.text = "HP" + 10.ToString();
         DEFtext.text = "DEF" + 10.ToString();
         GOLDtext.text = "GOLD" + gold.ToString();
     }
