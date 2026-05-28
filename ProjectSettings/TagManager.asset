@@ -20,6 +20,7 @@ TagManager:
   - Item2
   - Item3
   - ShopNPC
+  - Enemyded
   layers:
   - Default
   - TransparentFX

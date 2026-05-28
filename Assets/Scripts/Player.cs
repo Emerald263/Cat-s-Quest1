@@ -434,6 +434,15 @@ public class Player : MonoBehaviour
 
         }
 
+        if (collision.gameObject.tag.Equals("Enemyded"))
+        {
+
+
+            StartCoroutine(Surrender());
+
+
+        }
+
         if (collision.gameObject.tag.Equals("ShopNPC"))
         {
 
